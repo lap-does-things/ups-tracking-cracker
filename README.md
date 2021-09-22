@@ -4,7 +4,7 @@ I originally wrote this script to try and identify my full UPS tracking number f
 
 If you have the shipper number and service-level code of your shipment (which comprise the first eight characters of a UPS tracking number following the '1Z') along with the final four digits, this simple script will narrow down the possible valid tracking numbers and check each of them to see if they are in transit. It's not perfect, but in my case, it narrowed down 10,000 possible combinations to only 32 candidates, which were easy enough to check manually. YMMV, of course.
 
-## Configuring the Script
+## Configuring and Running the Script
 
 * Sign up for a free [RapidAPI account](https://rapidapi.com/signup) and get your default [API key](https://rapidapi.com/developer/apps).
 * Download `cracker.py` and open it in your IDE or text editor of choice.
