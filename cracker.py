@@ -58,6 +58,9 @@ def test_tracking_number(tracking_number):
     request = f'{{"tracking_number": "{tracking_number}", "carrier_code": "ups"}}'
     response = requests.request("POST", API_URL, data=request, headers=API_HEADERS)
     j = json.loads(response.text)
+    if j['meta']['code'] == 4001:
+        input("Your API Key is invalid.")
+        raise SystemExit
     return j['data']['items'][0]['status'] != 'notfound' \
            and j['data']['items'][0]['destination_country'] == DESTINATION_COUNTRY
 
@@ -118,6 +121,9 @@ def main():
         'known_id_suffix': LAST_FOUR_OF_TRACKING[:3],
         'checksum': LAST_FOUR_OF_TRACKING[3]
     }
+    if len(RAPIDAPI_KEY) != 50:
+        input("Your API key seems odd.. Doublecheck to see if it's 50 characters.")
+        raise SystemExit
     print('FINDING POSSIBLE TRACKING NUMBERS... (THIS MAY TAKE A BIT)\n')
     found = 0
     tracking_numbers = get_valid_tracking_numbers(**params)
